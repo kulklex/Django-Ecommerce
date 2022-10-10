@@ -146,6 +146,7 @@ CROSS_ORIGIN_ALLOW_ALL = True
 
 FILE_UPLOAD_PERMISSIONS = 0o640
 
+AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
