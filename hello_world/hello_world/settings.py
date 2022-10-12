@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'posts',
     'CRUD',
     'rest_framework',
     'pages.apps.PagesConfig',
