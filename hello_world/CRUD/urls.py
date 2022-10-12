@@ -3,7 +3,11 @@ from .views import *
 
 
 urlpatterns = [
-    path('', post)
+    path('', post),
+    path('get', get),
+    path('get/<id>', getId),
+    path('put/<id>', put),
+    path('delete/<id>', delete)
 ]
 
 
