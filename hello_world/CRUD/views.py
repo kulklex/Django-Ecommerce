@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from .models import Category
 from .serializers import CategorySerializer
-
+from rest_framework.views import APIView
 
 @api_view(['GET'])
 def get(request):
@@ -41,8 +41,7 @@ def put(request, id):
         return Response(serializer.data, status=status.HTTP_200_OK)
     else :
         return Response({'error': 'Updating Failed'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    
+       
     
 @api_view(['DELETE'])
 def delete(request, id):
@@ -51,3 +50,29 @@ def delete(request, id):
     return Response({"success": f'Data with id {id} has been deleted'})
 
 
+class EndPoints(APIView):
+    def post(self, request):
+        print(request)
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            cat = serializer.save()
+            serializer = CategorySerializer(cat, many=False)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'error': 'Creation Failed'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def get(self, request, pk):
+        cat = Category.objects.get(id=pk)
+        serializer = CategorySerializer(cat, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+    
+    def put(self, request, pk):
+        cat = Category.objects.get(id=pk)
+        serializer = CategorySerializer(instance= cat, data=request.data)
+        if serializer.is_valid():
+            cat = serializer.save()
+            serializer = CategorySerializer(cat, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
