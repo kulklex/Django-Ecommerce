@@ -151,9 +151,9 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_CREDENTIALS = True
 
-CROSS_ORIGIN_ALLOW_ALL = True
+CROSS_ORIGIN_ALLOW_ALL = True #allows all kind of host to access this backend endpoints
 
-FILE_UPLOAD_PERMISSIONS = 0o640
+FILE_UPLOAD_PERMISSIONS = 0o640 #so as not to worry about the size of the images
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
