@@ -10,7 +10,7 @@ from datetime import datetime, timezone, timedelta
 # Create your views here.
 class ListingAPIView(ListAPIView):
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
-    permissions_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny, )  
     serializer_class = ListingSerializer
     lookup_field = 'slug'
     
@@ -22,7 +22,7 @@ class ListingView(RetrieveAPIView):
     
     
 class SearchView(APIView):
-    permissions_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny, )  
     serializer_class = ListingSerializer
     
     def post(self, request, format=None):
