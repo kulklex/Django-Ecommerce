@@ -22,7 +22,7 @@ class Listing(models.Model):
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=15)
+    zipcode = models.CharField(max_length=15, blank=True)
     description = models.TextField(blank=True)
     sales_type = models.CharField(max_length=50, choices=SalesType.choices, default=SalesType.FOR_SALE)
     price = models.IntegerField()
