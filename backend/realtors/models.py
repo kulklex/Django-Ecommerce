@@ -11,6 +11,6 @@ class Realtor(models.Model):
     top_seller = models.BooleanField(default=False)
     date_hired = models.DateTimeField(default=datetime.now, blank=True)
     
-    def __str_(self):
+    def __str__(self):
         return self.name
     
