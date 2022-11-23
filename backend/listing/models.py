@@ -29,7 +29,6 @@ class Listing(models.Model):
     bedrooms = models.IntegerField()
     bathrooms = models.DecimalField(max_digits=2, decimal_places=1)
     home_type = models.CharField(max_length=50, choices=HomeType.choices, default= HomeType.BUNGALOW )
-    sqft = models.IntegerField(blank=True)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
