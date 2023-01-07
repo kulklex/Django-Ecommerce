@@ -10,8 +10,12 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Page404 from './components/Page404/Page404';
 
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 function App() {
   return (
+  <Provider store={store}>  
     <BrowserRouter className="App">
       <Layout>
         <Routes>
@@ -27,7 +31,7 @@ function App() {
         </Routes>
       </Layout>
     </BrowserRouter>
-  );
+  </Provider>);
 }
 
 export default App;
