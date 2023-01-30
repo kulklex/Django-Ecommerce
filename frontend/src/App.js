@@ -1,6 +1,6 @@
 import './App.css';
 import {Route, Routes, BrowserRouter} from 'react-router-dom'
-import Layout from './components/Layout';
+import Outlet from './components/Outlet';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -9,15 +9,15 @@ import ListingDetail from './pages/ListingDetail';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Page404 from './components/Page404/Page404';
-
+import "./sass/main.scss"
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
 function App() {
   return (
   <Provider store={store}>  
-    <BrowserRouter className="App">
-      <Layout>
+    <BrowserRouter className="App before:m-0 before:p-0 before:box-border border-4">
+      <Outlet>
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/contact' element={<Contact/>} />
@@ -29,7 +29,7 @@ function App() {
           
           <Route path='*' element={<Page404/>} />
         </Routes>
-      </Layout>
+      </Outlet>
     </BrowserRouter>
   </Provider>);
 }
