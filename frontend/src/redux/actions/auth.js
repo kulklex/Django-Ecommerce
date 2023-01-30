@@ -12,7 +12,7 @@ export const login = (email, password)  => async dispatch =>  {
  const body = JSON.stringify({email, password});
 
  try {
-    const res = await axios.post('http://localhost:8000/', body, config);
+    const res = await axios.post('http://localhost:8000/api/token', body, config);
     dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
@@ -38,20 +38,21 @@ export const signup = ({name, email, password, password2}) => async dispatch => 
      const body = JSON.stringify({email, password});
     
      try {
-        const res = await axios.post('http://localhost:8000/signup', body, config);
+        const res = await axios.post('http://localhost:8000/api/accounts/signup', body, config);
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data
         })
     
         dispatch(login(email, password))
-        } catch (error) {
+        
+    } catch (error) {
         dispatch({
             type: SIGNUP_FAIL
         })
         dispatch(setAlert('Error Authenticating', 'error'));
         console.error(error);
-        }
+    }
 }
 
 export const logout = () => dispatch => {

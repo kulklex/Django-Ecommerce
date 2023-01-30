@@ -1,4 +1,4 @@
-import  {SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from '../actions/types'
+import  {SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from '../actions/actionTypes'
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -6,7 +6,7 @@ const initialState = {
     loading: false
 }
 
-export default function auth(state = initialState, action){
+export default function authReducer(state = initialState, action){
     const {type, payload} = action;
 
     switch(type){
