@@ -1,6 +1,6 @@
 import axios from "axios"
 import { setAlert } from "./alert"
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from "./types"
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from "./actionTypes"
 
 
 export const login = (email, password)  => async dispatch =>  {
@@ -35,7 +35,7 @@ export const signup = ({name, email, password, password2}) => async dispatch => 
         'Content-Type': 'application/json'}
      }
     
-     const body = JSON.stringify({email, password});
+     const body = JSON.stringify({name, email, password, password2});
     
      try {
         const res = await axios.post('http://localhost:8000/api/accounts/signup', body, config);
