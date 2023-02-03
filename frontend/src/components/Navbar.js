@@ -1,25 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { logout, } from '../redux/actions/auth';
+import { logout } from '../redux/actions/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import decode from 'jwt-decode'
 
 const Navbar = () => {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+    const [user, setUser] = useState(localStorage.getItem('token') ? decode(localStorage.getItem('token')) : " ")
    
     const dispatch = useDispatch()
     const location = useLocation()
 
+    const handleLogout = (e) => {
+        e.stopPropagation()
+        dispatch(logout())
+        window.location.reload()
+    }
 
-    const LogOut = (<a className='navbar__top__auth__link' href='/' onClick={dispatch(logout())}> LogOut </a>)
+    const LogOut = (<button  style={{color: 'inherit'}} onClick={(e) => handleLogout(e)}> Logout </button>)
 
     const Auth = (<>
-        <a className='navbar__top__auth__link' href='/api/token'>Sign In</a>
-        <a className='navbar__top__auth__link' href='/api/accounts/signup'>Sign Up</a>
+        <a className='navbar__top__auth__link' href='/login'>Login</a>
+        <a className='navbar__top__auth__link' href='/signup'>Sign Up</a>
     </>)
 
    
     useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem('user')))
+        setUser(localStorage.getItem('token') ? decode(localStorage.getItem('token')) : " ")
     }, [location]);
 
     return (
@@ -30,7 +36,7 @@ const Navbar = () => {
                         <Link className='navbar__top__logo__link' to='/'>Real Estate</Link>
                     </div>
                     <div className="navbar__top__auth">
-                        {!user?.isLoading && (<>{user?.isAuthenticated ? LogOut : Auth}</>)}
+                        {user?.user_id ? LogOut : Auth}
                     </div>
                 </div>
                 <div className="navbar__bottom">

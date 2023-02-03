@@ -11,15 +11,14 @@ export default function authReducer(state = initialState, action){
 
     switch(type){
         case LOGIN_SUCCESS:
-            console.log(payload)
-            localStorage.setItem('token', JSON.stringify({...payload.access}));
+            localStorage.setItem('token', payload.access);
             return {...state, isAuthenticated: true, isLoading: true, token: payload?.access}
         case SIGNUP_SUCCESS:
             return {...state, isAuthenticated: false, isLoading: true}
         case SIGNUP_FAIL:
         case LOGIN_FAIL:
         case LOGOUT:
-            localStorage.clear()
+            localStorage.removeItem('token')
             return {...state, token: null, isAuthenticated: false, isLoading: false}
         default :
             return state
