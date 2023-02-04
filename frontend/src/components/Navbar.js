@@ -16,7 +16,7 @@ const Navbar = () => {
         window.location.reload()
     }
 
-    const LogOut = (<button  style={{color: 'inherit'}} onClick={(e) => handleLogout(e)}> Logout </button>)
+    const LogOut = (<a className='navbar__top__auth__link' href='/' onClick={(e) => handleLogout(e)}> Logout </a>)
 
     const Auth = (<>
         <a className='navbar__top__auth__link' href='/login'>Login</a>
@@ -49,7 +49,7 @@ const Navbar = () => {
                     <li className="navbar__bottom__item">
                         <NavLink className='navbar__bottom__item__link' to='/about'>About</NavLink>
                     </li>
-                    <li className="navbar_bottom_item">
+                    <li className="navbar__bottom__item">
                         <NavLink className='navbar__bottom__item__link' to='/contact'>Contact</NavLink>
                     </li>
                 </div>

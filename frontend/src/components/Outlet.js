@@ -5,6 +5,7 @@ const Outlet = (props) => {
     return (
         <div>
             <Navbar/>
+            <br/>
             {props.children}
         </div>
     );
