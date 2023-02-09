@@ -41,8 +41,8 @@ class SearchView(APIView):
             price = 200000
         elif price == '$400,000+':
             price = 400000
-        elif price == '$600,000+':
-            price = 600000
+        elif price == '$500,000+':
+            price = 500000
         elif price == '$800,000+':
             price = 800000
         elif price == '$1,000,000+':
@@ -51,6 +51,8 @@ class SearchView(APIView):
             price = 1200000
         elif price == '$1,500,000+':
             price = 1500000
+        elif price == '$2,000,000+':
+            price = 2000000 
         elif price == 'Any':
             price = -1
             
@@ -71,7 +73,7 @@ class SearchView(APIView):
             bedrooms = 4
         elif bedrooms == '5+':
             bedrooms = 5  
-        queryset = queryset.filter(bedrooms___gte=bedrooms)
+        queryset = queryset.filter(bedrooms__gte=bedrooms)
         
         #home_type
         home_type = data['home_type']
@@ -88,11 +90,13 @@ class SearchView(APIView):
         elif bathrooms == '3+':
             bathrooms = 3.0
         elif bathrooms == '4+':
-            bathrooms = 4.0   
+            bathrooms = 4.0
+        elif bathrooms == '5+':
+            bathrooms = 5.0   
         queryset = queryset.filter(bathrooms__gte=bathrooms)
         
         #days passed
-        days_passed = data['list_date']
+        days_passed = data['days_listed']
         if days_passed == '1 or less':
             days_passed = 1
         elif days_passed == '2 or less':
@@ -153,7 +157,8 @@ class SearchView(APIView):
             if count < has_photos:
                 slug = query.slug
                 queryset = queryset.exclude(slug__iexact=slug)
-                
+        
+        
         #keywords    
         keywords = data['keywords']
         queryset = queryset.filter(description__icontains=keywords)

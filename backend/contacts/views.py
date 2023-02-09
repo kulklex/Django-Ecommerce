@@ -13,8 +13,9 @@ class ContactCreateView(APIView):
     
     def post(self, request, format=None):
         data = self.request.data
-        
+        print('post')
         try:
+            print('try genesis')
             send_mail(
                 data['subject'],
                 'Name: '
@@ -23,15 +24,16 @@ class ContactCreateView(APIView):
                 + data['email']
                 + '\n\nMessage:\n'
                 + data['message'],
-                '[kulklex@gmail.com]',
-                ['kulklex@gmail.com'],
+                '[yusuffhassan2020@gmail.com]', #sender email
+                ['[kulklex@gmail.com]'], #email to receive message
                 fail_silently=False
             )
-            
+            print('Success')
             contact = Contact(name=data['name'], email=data['email'], subject=data['subject'], message=data['message'])
             contact.save()
-            
+            print('Success Again')
             return Response({'success': "Message sent successfully"})
         
-        except:
+        except (error):
+            print('Failed to send message')
             return Response({'error': "Message failed to send"})
