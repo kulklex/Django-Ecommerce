@@ -1,14 +1,12 @@
 import React from 'react';
-import axios from 'axios';
-import  { Audio } from 'react-loader-spinner'
+// import  { Audio } from 'react-loader-spinner'
 import { useState } from 'react';
-import moment from 'moment'
 import { axiosInstance } from '../redux/actions/auth';
 
 const ListingsForm = ({setListings}) => {
 
     const [formData, setFormData] = useState({
-        realtor : "", 
+    realtor : "", 
     slug : "",
     title : "",
     address : "",
@@ -34,12 +32,11 @@ const ListingsForm = ({setListings}) => {
     photo_10 : " ",  
     is_published : false,  
     has_photos: true,
-    list_date : Date.now(),
-    keywords: '',  
-    open_house:  false,  
+    days_listed: '1 or less',
+    keywords: '',    
     })
 
-    const { open_house, keywords, has_photos, sales_type, price, bedrooms, bathrooms, home_type, photo_main} = formData;
+    const { days_listed, keywords, has_photos, sales_type, price, bedrooms, bathrooms, home_type,} = formData;
    
     const [isLoading, setIsLoading] = useState(false)
 
@@ -64,7 +61,7 @@ const ListingsForm = ({setListings}) => {
         <form className='listingform' onSubmit={(e) => handleSubmit(e)}>
             <div className="row">
 
-                <div className="col-1-of-5">
+                <div className="col-1-of-6">
                     <div className="listingform__section">
                         <label htmlFor="sales_type" className="listingform__label">Sale or Rent</label>
                         <select name="sales_type" id="sales_type" className="listingform__select" value={sales_type} onChange={(e) => handleChange(e)}>
@@ -87,9 +84,10 @@ const ListingsForm = ({setListings}) => {
                             <option>Any</option>
                         </select>
                     </div>
+                    
                 </div>
 
-                <div className="col-1-of-5">
+                <div className="col-1-of-6">
                     <div className="listingform__section">
                         <label htmlFor="bedrooms" className="listingform__label">Bedrooms</label>
                         <select name="bedrooms" id="bedrooms" className="listingform__select" value={bedrooms} onChange={(e) => handleChange(e)}>
@@ -115,9 +113,9 @@ const ListingsForm = ({setListings}) => {
                     </div>
                 </div>
 
-                <div className="col-1-of-5"> 
+                <div className="col-1-of-6"> 
                     <div className="listingform__section">
-                        <label htmlFor="has_photos" className="listingform__label">Bathrooms</label>
+                        <label htmlFor="has_photos" className="listingform__label">Has Photos</label>
                         <select name="has_photos" id="has_photos" className="listingform__select" value={has_photos} onChange={(e) => handleChange(e)}>
                             <option>1+</option>
                             <option>3+</option>
@@ -128,7 +126,7 @@ const ListingsForm = ({setListings}) => {
                     </div>
                     
                     <div className="listingform__section">
-                        <label htmlFor="home_type" className="listingform__label">Bathrooms</label>
+                        <label htmlFor="home_type" className="listingform__label">Home Type</label>
                         <select name="home_type" id="home_type" className="listingform__select" value={home_type} onChange={(e) => handleChange(e)}>
                             <option>Bungalow</option>
                             <option>One Storey</option>
@@ -140,24 +138,31 @@ const ListingsForm = ({setListings}) => {
                     </div>
                 </div>
 
-                <div className="col-1-of-5">
+                <div className="col-1-of-6">
                     <div className="listingform__section">
-                        <label htmlFor="keywords" className="listingform__label">Bathrooms</label>
+                        <label htmlFor="keywords" className="listingform__label">Keywords</label>
                         <input className="listingform__input" name='keywords' type='text' onChange={(e) => handleChange(e)} value={keywords}/>
                     </div>
-
-                    <div className="listingform__section">
-                        <label htmlFor="open_house" className="listingform__label">Bathrooms</label>
-                        <input name="open_house" id="open_house" type='checkbox' className="listingform__checkbox" value={open_house} onChange={(e) => handleChange(e)}/>
+                    <br/>
+                    <div className='listingform__section'>
+                        <label className='listingform__label' htmlFor='days_listed'>Days Listed</label>
+                        <select className='listingform__select' name='days_listed' onChange={e => handleChange(e)} value={days_listed}>
+                            <option>1 of less</option>
+                            <option>2 of less</option>
+                            <option>5 of less</option>
+                            <option>10 of less</option>
+                            <option>20 of less</option>
+                            <option>Any</option>
+                        </select>
                     </div>
                 </div>
 
-                <div className="col-1-of-5">
+                <div className="col-1-of-6">
                     {
-                        isLoading ? 
-                        <div className="listingform_loader">
-                            <Audio height="80" width="80" radius="9" color="green" ariaLabel="loading" wrapperStyle wrapperClass />
-                        </div> 
+                        isLoading ? " Is Loading..."
+                        // <div className="listingform__loader">
+                        //     <Audio height="80" width="80" radius="9" color="green" ariaLabel="loading" wrapperStyle wrapperClass visible/>
+                        // </div> 
                         : 
                         <button className='listingform__button listingform__button--primary'>Save</button>
                     }

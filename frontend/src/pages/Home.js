@@ -54,7 +54,7 @@ const Home = () => {
                     {
                         listings.length !== 0 ?
                          (<Pagination
-                             listingPerPage={listingPerPage} count={listings.length}  visitPage={visitPage} 
+                             listingPerPage={listingPerPage} count={listings.length}  visitPage={visitPage} setListingPerPage={setListingPerPage}
                              previousPage={previousPage}   nextPage={nextPage} activePage={activePage} setActivePage={setActivePage} />) 
                         : null
                     }
