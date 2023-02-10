@@ -10,11 +10,11 @@ class Listing(models.Model):
     
     class HomeType(models.TextChoices):
         BUNGALOW = 'Bungalow'
-        ONE_STOREY = 'OneStorey'
-        TWO_STOREY = 'TwoStorey'
-        THREE_STOREY = 'ThreeStorey'
+        ONE_STOREY = 'One Storey'
+        TWO_STOREY = 'Two Storey'
+        THREE_STOREY = 'Three Storey'
         DUPLEX = 'Duplex'
-        MULTIPLE_STOREY = 'MultipleStorey'
+        MULTIPLE_STOREY = 'Multiple Storey'
     
     realtor = models.name = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING) #so if realtor is deleted the listing would still be present 
     slug = models.CharField(max_length=200, unique=True)
@@ -40,7 +40,7 @@ class Listing(models.Model):
     photo_8 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_9 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_10 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    is_published = models.BooleanField(default = True)
+    is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=now, blank=True)
     
     def __str__(self):
