@@ -27,7 +27,7 @@ class SearchView(APIView):
     
     def post(self, request, format=None):
         queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
-        data = self.request.data
+        data = request.data
         
         #sales_type
         sales_type = data['sales_type']
@@ -37,6 +37,8 @@ class SearchView(APIView):
         price = data['price']
         if price == '$0+':
             price = 0
+        elif price == '$100,000+':
+            price = 100000
         elif price == '$200,000+':
             price = 200000
         elif price == '$400,000+':
@@ -114,7 +116,7 @@ class SearchView(APIView):
             num_days = (datetime.now(timezone.utc) - query.list_date).days
             if days_passed != 0:
                 if num_days > days_passed:
-                    slug = query.slug
+                    slug=query.slug
                     queryset = queryset.exclude(slug__iexact=slug)
         #looping through the query set to get number of days, if number of days is > days_passed then exclude them from query set (by comparing their slugs)
         
@@ -160,9 +162,11 @@ class SearchView(APIView):
         
         
         #keywords    
-        keywords = data['keywords']
-        queryset = queryset.filter(description__icontains=keywords)
+        # keywords = data['keywords']
+        # queryset = queryset.filter(description__icontains=keywords)
         
+        print(queryset)
+        print(data)
         serializer = ListingSerializer(queryset, many=True) 
         
         return Response(serializer.data) #To make it JSON data

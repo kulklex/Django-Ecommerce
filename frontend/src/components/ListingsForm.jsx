@@ -6,37 +6,17 @@ import { axiosInstance } from '../redux/actions/auth';
 const ListingsForm = ({setListings}) => {
 
     const [formData, setFormData] = useState({
-    realtor : "", 
-    slug : "",
-    title : "",
-    address : "",
-    city : "",
-    state : "",
-    zipcode : "",
-    description : "",
     sales_type : "For Sale",
     price : "$0+",
     bedrooms : "0+",
     bathrooms : "0+", 
     home_type : "Bungalow", 
-    photo_main : "",
-    photo_1 : " ",   
-    photo_2 : " ",   
-    photo_3 : " ",   
-    photo_4 : " ",   
-    photo_5 : " ",   
-    photo_6 : " ",   
-    photo_7 : " ",   
-    photo_8 : " ",   
-    photo_9 : " ",   
-    photo_10 : " ",  
-    is_published : false,  
-    has_photos: true,
+    has_photos: '1+',
     days_listed: '1 or less',
-    keywords: '',    
+       
     })
 
-    const { days_listed, keywords, has_photos, sales_type, price, bedrooms, bathrooms, home_type,} = formData;
+    const { days_listed, has_photos, sales_type, price, bedrooms, bathrooms, home_type,} = formData;
    
     const [isLoading, setIsLoading] = useState(false)
 
@@ -49,6 +29,7 @@ const ListingsForm = ({setListings}) => {
             const getListings = await axiosInstance.post('/listings/search', {...formData})
             const {data} = getListings
             setListings(data)
+            console.log(data)
             setIsLoading(false)
             window.scrollTo(0, 0) //scrolls to the top
         } catch (error) {
@@ -139,10 +120,10 @@ const ListingsForm = ({setListings}) => {
                 </div>
 
                 <div className="col-1-of-6">
-                    <div className="listingform__section">
+                    {/* <div className="listingform__section">
                         <label htmlFor="keywords" className="listingform__label">Keywords</label>
                         <input className="listingform__input" name='keywords' type='text' onChange={(e) => handleChange(e)} value={keywords}/>
-                    </div>
+                    </div> */}
                     <br/>
                     <div className='listingform__section'>
                         <label className='listingform__label' htmlFor='days_listed'>Days Listed</label>

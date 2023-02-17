@@ -3,7 +3,7 @@ import Outlet from './components/Outlet';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Listings from './pages/Listings';
+import ListingsPage from './pages/ListingsPage';
 import ListingDetail from './pages/ListingDetail';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
@@ -21,7 +21,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/contact' element={<Contact/>} />
           <Route path='/about' element={<About/>} />
-          <Route path='/listings' element={<Listings/>} />
+          <Route path='/listings' element={<ListingsPage/>} />
           <Route path='/listings/:id' element={<ListingDetail/>} />
           <Route path='/signup' element={<SignUp/>} />
           <Route path='/login' element={<Login/>} />

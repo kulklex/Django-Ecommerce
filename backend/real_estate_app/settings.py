@@ -66,7 +66,7 @@ ROOT_URLCONF = 'real_estate_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "build")],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_CREDENTIALS = True
 
-CROSS_ORIGIN_ALLOW_ALL = True #allows all kind of host to access this backend endpoints
+CORS_ORIGIN_ALLOW_ALL = True #allows all kind of host to access this backend endpoints
 
 FILE_UPLOAD_PERMISSIONS = 0o640 #so as not to worry about the size of the images
 
@@ -165,10 +165,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-#jmjveflhmkpffeuv
+#vctzjzhbkgmpwcsz
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'kulklex@gmail.com'
-EMAIL_HOST_PASSWORD = 'jmjveflhmkpffeuv'
+EMAIL_HOST_USER = 'yusuffhassan2020@gmail.com'
+EMAIL_HOST_PASSWORD = 'vctzjzhbkgmpwcsz'
 EMAIL_USE_TLS = True

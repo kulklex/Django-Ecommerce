@@ -47,7 +47,7 @@ const Home = () => {
                 <ListingsForm setListings={setListings}/>
             </section>
             <section className="home__listings">
-                <Listings currentListings={currentListings} />
+                <Listings listings={currentListings} />
             </section>
             <section className="home__pagination">
                 <div className="row">
