@@ -128,11 +128,11 @@ const ListingsForm = ({setListings}) => {
                     <div className='listingform__section'>
                         <label className='listingform__label' htmlFor='days_listed'>Days Listed</label>
                         <select className='listingform__select' name='days_listed' onChange={e => handleChange(e)} value={days_listed}>
-                            <option>1 of less</option>
-                            <option>2 of less</option>
-                            <option>5 of less</option>
-                            <option>10 of less</option>
-                            <option>20 of less</option>
+                            <option>1 or less</option>
+                            <option>2 or less</option>
+                            <option>5 or less</option>
+                            <option>10 or less</option>
+                            <option>20 or less</option>
                             <option>Any</option>
                         </select>
                     </div>

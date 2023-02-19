@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -27,16 +27,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    #3rd party
+
+    # 3rd party
     'corsheaders',
     'rest_framework',
-    
-    #custom
-    'realtors',
-    'accounts',
-    'listing',
-    'contacts',
+
+    # custom
+    'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
+    'listing.apps.ListingConfig',
+    'contacts.apps.ContactsConfig',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -142,9 +142,10 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_ALLOW_ALL = True #allows all kind of host to access this backend endpoints
+# allows all kind of host to access this backend endpoints
+CORS_ORIGIN_ALLOW_ALL = True
 
-FILE_UPLOAD_PERMISSIONS = 0o640 #so as not to worry about the size of the images
+FILE_UPLOAD_PERMISSIONS = 0o640  # so as not to worry about the size of the images
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
@@ -154,11 +155,10 @@ AUTH_USER_MODEL = 'accounts.UserAccount'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-#vctzjzhbkgmpwcsz
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'yusuffhassan2020@gmail.com'
-EMAIL_HOST_PASSWORD = 'vctzjzhbkgmpwcsz'
-EMAIL_USE_TLS = True
+# vctzjzhbkgmpwcsz
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
