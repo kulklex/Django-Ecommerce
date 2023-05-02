@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { logout } from '../redux/actions/auth';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { logout } from '../redux/actions/auth'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import decode from 'jwt-decode'
 
 const Navbar = () => {
     const [user, setUser] = useState(localStorage.getItem('token') ? decode(localStorage.getItem('token')) : " ")
-   
+    
     const dispatch = useDispatch()
     const location = useLocation()
-
+    
     const handleLogout = (e) => {
         e.stopPropagation()
         dispatch(logout())

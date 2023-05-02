@@ -3,7 +3,6 @@ import { setAlert } from "./alert"
 import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from "./actionTypes"
 import {toast} from 'react-toastify'
 
-
 export const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
@@ -15,7 +14,7 @@ export const axiosInstance = axios.create({
 
 
 export const login = ({email, password}, navigate)  => async dispatch =>  {
-
+    
  const body = JSON.stringify({email, password});
 
  try {
@@ -25,7 +24,7 @@ export const login = ({email, password}, navigate)  => async dispatch =>  {
         payload: res.data
     })
     dispatch(setAlert('Authenticated successfully', 'success'))
-    navigate('/')
+    navigate(`/`)
  } catch (error) {
     if(error.response) {
         const {data} = error.response
